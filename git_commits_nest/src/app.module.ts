@@ -4,9 +4,12 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GithubModule } from './github/github.module';
+import { CommitsModule } from './commits/commits.module';
+import { Commit } from './commits/entities/commit.entity';
 
 @Module({
   imports: [
+    CommitsModule,
     GithubModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
@@ -19,11 +22,12 @@ import { GithubModule } from './github/github.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [],
+        entities: [Commit],
         synchronize: true,
       }),
     }),
     GithubModule,
+    CommitsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

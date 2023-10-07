@@ -15,7 +15,7 @@ export class CommitsService {
     private httpService: HttpService,
   ) {}
 
-  @Cron('20 * * * *')
+  @Cron('* * * * *')
   async fetchAndSaveCommits() {
     let page = 1;
     while (true) {
@@ -40,6 +40,15 @@ export class CommitsService {
 
   async saveCommits(commits: any[]) {
     for (const commit of commits) {
+      const existingCommit = await this.commitRepository.findOne({
+        where: { sha: commit.sha },
+      });
+
+      if (existingCommit) {
+        this.logger.log(`Commit ${commit.sha} already exists in the database.`);
+        continue;
+      }
+
       const newCommit = new Commit();
       newCommit.sha = commit.sha;
       newCommit.message = commit.commit.message;

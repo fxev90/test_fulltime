@@ -6,9 +6,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GithubModule } from './github/github.module';
 import { CommitsModule } from './commits/commits.module';
 import { Commit } from './commits/entities/commit.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     CommitsModule,
     GithubModule,
     ConfigModule.forRoot(),

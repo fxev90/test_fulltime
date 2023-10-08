@@ -1,3 +1,4 @@
+import CommitCard from "./CommitCard";
 
 const hits = [
     {
@@ -35,18 +36,16 @@ const CommitsPage = () => {
     return (
         <div className="p-4 space-y-4">
             <div className="flex flex-col items-center space-y-4">
-                {hits.map((hit) => (
-                    <div key={hit.id} className="flex items-center bg-white bg-opacity-50 p-4 rounded-lg shadow-md w-4/5">
-                        <div className="flex-1">
-                            <h2 className="text-lg font-semibold">SHA: {hit.sha}</h2>
-                            <p className="text-sm text-gray-600">Message: {hit.message}</p>
-                        </div>
-                        <div className="ml-4">
-                            <p className="text-sm">Author: {hit.authorName}</p>
-                            <p className="text-xs text-gray-500">Email: {hit.authorEmail}</p>
-                        </div>
-                    </div>
-                ))}
+            {hits.map((hit) => (
+            <CommitCard 
+                key={hit.id} 
+                sha={hit.sha} 
+                message={hit.message} 
+                authorName={hit.authorName} 
+                authorEmail={hit.authorEmail}
+                id={hit.id}
+            />
+        ))}
                 <div className="d-flex">
                       <button className=" m-4 px-4 py-2 bg-blue-500  text-white rounded">
                     Previous

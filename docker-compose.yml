@@ -15,5 +15,18 @@ services:
       - pg_data_test:/var/lib/postgresql/data/
 
 
+  meilisearch:
+    container_name: meilisearch
+    image: getmeili/meilisearch:latest
+    restart: always
+    environment:
+      MEILI_HTTP_ADDR: 0.0.0.0:7700
+      MEILI_MASTER_KEY: masterKey
+    ports:
+      - "7700:7700"
+    volumes:
+      - meili_data:/data.ms
+
 volumes:
   pg_data_test:
+  meili_data:

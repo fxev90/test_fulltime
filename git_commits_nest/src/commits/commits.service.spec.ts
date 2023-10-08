@@ -7,12 +7,14 @@ import { HttpService } from '@nestjs/axios';
 import { of } from 'rxjs';
 import 'reflect-metadata';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MeilisearchModule } from '../meilisearch/meilisearch.module';
+import { MeilisearchService } from '../meilisearch/meilisearch.service';
 
 describe('CommitsService', () => {
   let service: CommitsService;
   let mockRepository: jest.Mocked<Repository<Commit>>;
   let mockHttpService: HttpService;
-
+  let mockConfigService: ConfigService;
   beforeAll(() => {
     jest.mock('typeorm');
   });
@@ -40,10 +42,11 @@ describe('CommitsService', () => {
     } as any;
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule],
+      imports: [ConfigModule.forRoot(), MeilisearchModule],
       providers: [
-        CommitsService,
         ConfigService,
+        CommitsService,
+        MeilisearchService,
         {
           provide: getRepositoryToken(Commit),
           useValue: mockRepository,
@@ -56,6 +59,7 @@ describe('CommitsService', () => {
     }).compile();
 
     service = module.get<CommitsService>(CommitsService);
+    mockConfigService = module.get<ConfigService>(ConfigService);
   });
 
   it('should be defined', () => {

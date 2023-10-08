@@ -30,9 +30,13 @@ export class MeilisearchService {
   async search(
     indexName: string,
     query: string,
-    options?: Record<string, any>,
+    limit: string,
+    page: string,
   ): Promise<SearchResponse<any>> {
     const index = await this.getOrCreateIndex(indexName);
-    return await index.search(query, options);
+    return await index.search(query, {
+      limit: parseInt(limit, 10),
+      offset: parseInt(limit, 10) * (parseInt(page, 10) - 1),
+    });
   }
 }

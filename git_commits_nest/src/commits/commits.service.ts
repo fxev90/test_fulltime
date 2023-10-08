@@ -1,3 +1,4 @@
+import { MeilisearchService } from './../meilisearch/meilisearch.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -18,6 +19,7 @@ export class CommitsService {
     private commitRepository: Repository<Commit>,
     private httpService: HttpService,
     private configService: ConfigService,
+    private meilisearchService: MeilisearchService,
   ) {
     this.repoUrl = this.configService.get<string>('GITHUB_REPO_URL');
     this.perPage = this.configService.get<number>('ITEMS_PER_PAGE', 5);
@@ -82,6 +84,7 @@ export class CommitsService {
       newCommit.authorEmail = commit.commit.author.email;
 
       await this.commitRepository.save(newCommit);
+      this.meilisearchService.addDocuments('commits', [newCommit]);
       this.logger.log(`Saved commit ${commit.sha} to the database.`);
     }
   }

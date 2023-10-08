@@ -7,6 +7,7 @@ import { GithubModule } from './github/github.module';
 import { CommitsModule } from './commits/commits.module';
 import { Commit } from './commits/entities/commit.entity';
 import { ScheduleModule } from '@nestjs/schedule';
+import { MeilisearchModule } from './meilisearch/meilisearch.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     }),
     GithubModule,
     CommitsModule,
+    MeilisearchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

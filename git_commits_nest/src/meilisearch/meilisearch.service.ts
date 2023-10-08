@@ -18,11 +18,21 @@ export class MeilisearchService {
     if (index) {
       return index;
     }
-    const newIndex = await this.client.createIndex(indexName);
+    await this.client.createIndex(indexName);
+    const newIndex = this.client.getIndex(indexName);
     return newIndex;
   }
 
   async addDocuments(indexName: string, documents: any[]) {
     return await this.client.index(indexName).addDocuments(documents);
+  }
+
+  async search(
+    indexName: string,
+    query: string,
+    options?: Record<string, any>,
+  ): Promise<SearchResponse<any>> {
+    const index = await this.getOrCreateIndex(indexName);
+    return await index.search(query, options);
   }
 }

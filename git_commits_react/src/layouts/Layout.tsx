@@ -10,14 +10,14 @@ const queryClient = new QueryClient();
 type LayoutProps = {
   title?: string;
 };
-
+console.log("epale")
 const Layout: React.FC<LayoutProps> = () => {
   return (
     <div className="layout ">
         <QueryClientProvider client={queryClient}>
         <Header />
         <div className='flex'>
-          <Sidebar title="hola pai" />
+          <Sidebar />
           <main className="layout-content bg-blue-50 min-h-screen">
             <Outlet />
         </main>

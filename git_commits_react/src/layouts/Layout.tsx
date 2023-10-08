@@ -8,7 +8,7 @@ import Sidebar from '../components/sidebar';
 
 
 type LayoutProps = {
-  title: string;
+  title?: string;
 };
 
 const Layout: React.FC<LayoutProps> = () => {

@@ -68,9 +68,9 @@ describe('MeilisearchService', () => {
         exhaustiveNbHits: true,
         processingTimeMs: 10,
         query: 'query',
-      };
+      } as any;
 
-      mockIndex.search.mockResolvedValue(mockSearchResponse);
+      (mockIndex.search as jest.Mock).mockResolvedValue(mockSearchResponse);
 
       const result = await service.search('some-index', 'query', '10', '1');
       expect(result).toEqual(mockSearchResponse);

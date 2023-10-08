@@ -1,14 +1,15 @@
+import axios from 'axios';
+import { FetchParams } from './../types/Commit';
 import { useQuery } from 'react-query';
 
-type FetchParams = {
-  url: string;
-  queryKey: string;
-};
 
-export const useFetchData = ({ url, queryKey }: FetchParams) => {
+
+export const useFetchData = ({ url, queryKey, queryParams }: FetchParams) => {
   const fetcher = async () => {
-    const res = await fetch(url);
-    return res.json();
+    const res = await axios.get(url, {
+      params: queryParams,
+    });
+    return res.data;
   };
 
   const { data, isLoading, isError } = useQuery(queryKey, fetcher);

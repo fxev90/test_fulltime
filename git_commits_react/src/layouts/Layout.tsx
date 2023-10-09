@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = () => {
         <Header />
         <div className='flex'>
           <Sidebar />
-          <main className="layout-content bg-blue-50 min-h-screen">
+          <main className="layout-content bg-blue-50 min-h-screen w-[100vw]">
             <Outlet />
         </main>
         </div>

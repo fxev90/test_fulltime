@@ -8,8 +8,7 @@ const Home: React.FC = () => {
 
 
   return (
-    <div >
-        <h1>home</h1>
+    <div className='container ml-20 mt-10'>
         <CommitsPage/>
     </div>
   );

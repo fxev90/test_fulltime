@@ -14,10 +14,10 @@ const CommitModal: React.FC<CommitModalProps> = ({ isOpen, onClose, commit }) =>
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center justify-center z-50 margin-adjust">
       {/* Overlay */}
       <div
-        className={`absolute inset-0 bg-black transition-opacity ease-out duration-300 ${
+        className={`absolute  inset-0 bg-black transition-opacity ease-out duration-300 ${
           isOpen ? "opacity-50" : "opacity-0"
         }`}
         onClick={onClose}

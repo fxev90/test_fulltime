@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CommitCard from './CommitCard';
+import CommitCard from './CommitsPage/CommitCard';
 import { useFetchData } from '../utils/githubConnect';
 import { Commit } from '../types/Commit';
 import CommitModal from './Modal';

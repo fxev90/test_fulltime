@@ -14,13 +14,14 @@ export class MeilisearchService {
   }
 
   async getOrCreateIndex(indexName: string) {
-    const index = await this.client.getIndex(indexName);
-    if (index) {
+    try {
+      const index = await this.client.getIndex(indexName);
+      return index;
+    } catch (error) {
+      await this.client.createIndex(indexName);
+      const index = await this.client.getIndex(indexName);
       return index;
     }
-    await this.client.createIndex(indexName);
-    const newIndex = this.client.getIndex(indexName);
-    return newIndex;
   }
 
   async addDocuments(indexName: string, documents: any[]) {

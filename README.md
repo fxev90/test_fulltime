@@ -75,7 +75,7 @@ yarn install
 ```bash
 yarn start
 ```
-
+Wait for the NestJS app to add records from the github API, it has a cron job that runs at the second 0 of every minute
 The application will start running on [http://localhost:3000/](http://localhost:3000/). You can use the search endpoint as follows:
 
 - **Endpoint:** GET [http://localhost:3000/search](http://localhost:3000/search)

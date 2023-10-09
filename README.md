@@ -24,7 +24,7 @@ In the root directory of the repository, run the following command to start the 
 docker-compose up
 
 
-Running the NestJS Application
+Running the NestJS Application 
 Navigate to the git_commits_nest folder and install the dependencies:
 cd git_commits_nest
 Copy the .env.example file and rename it to .env. Update the .env file with your actual environment variables.
@@ -44,6 +44,7 @@ Functionality:
 Searches within the commits index.
 Returns the 5th page of results.
 Limits the number of results to 5 per page.
+Note:  Wait for the start of every minute for the nest app populate the database with github commits 
 
 Running the React Application (This react application is build with vite typescript template)
 Navigate to the git_commits_react folder and install the dependencies:

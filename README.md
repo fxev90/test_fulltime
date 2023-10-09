@@ -102,7 +102,7 @@ yarn install
 ### Run the Application
 
 ```bash
-yarn start
+yarn dev
 ```
 
 The application will start running on [http://localhost:3003/](http://localhost:3003/). It has two routes:
